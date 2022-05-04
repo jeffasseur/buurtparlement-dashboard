@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400&family=Playfair+Display:wght@400;700&family=Poppins:wght@500;600;700;800&display=swap');
+
+:root {
+    /* THEME COLORS */
+    --color-light: #F9FAFF;
+    --color-blue: #495EF9;
+    --color-text: #1F2958;
+    --color-text-secondary: #666C8B;
+    --color-accent-orange: #FE7247;
+
+    /* FONT FAMILY */
+    font-family: 'Poppins', sans-serif;
+    font-family: 'Playfair Display', serif;
+    font-family: 'Inter', sans-serif;
+
+    /* FONTS */
+    --font-body: 'Inter', sans-serif;
+    --font-headline: 'Poppins', sans-serif;
+    --font-quote: 'Playfair Display', serif;
+
+    /* FONT SIZE */
+    --fs-body: 1em;
+    --fs-headline1: 2.5em;
+    --fs-headline2: 2em;
+    --fs-headline3: 1.5em;
+    --fs-headline4: 1.2em;
+    --fs-quote: 1.2em;
+
+    /* FONT WEIGHT */
+    --fw-regular: 400;
+    --fw-bold: 700;
+    --fw-light: 300;
+    --fw-semi-bold: 600;
+    --fw-extra-bold: 800;
+
+    /* LINE HEIGHT */
+    --lh-standard: 1.5em;
+}
+
+h1 {
+    font-family: var(--font-headline);
+    font-size: var(--fs-headline1);
+    font-weight: var(--fw-extra-bold);
+    line-height: var(--lh-standard);
+    color: var(--color-blue);
+}
