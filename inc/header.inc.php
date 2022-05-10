@@ -7,7 +7,7 @@
                 <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.PtAghFSwI4d40TBvu7DFDwHaHa%26pid%3DApi&f=1" alt="Profile picture">
             </div>
             <div>
-                <i id="notification" class='bx bx-bell nav_icon fs-3'></i> 
+                <i id="notification" class='bx bx-bell nav_icon fs-5'></i> 
             </div>
         </div>
     </header>
@@ -16,7 +16,7 @@
         <nav class="nav">
             <div> 
                 <a href="dashboard.php" class="nav_logo">
-                     <i class='bx bx-layer nav_logo-icon'></i> 
+                     <img src="/assets/icons/logo-orange.svg" alt="Logo orange" width="40" height="40">
                      <span class="nav_logo-name">Buurtparlement</span> 
                 </a>
                 <div class="nav_list"> 

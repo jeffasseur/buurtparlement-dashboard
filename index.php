@@ -9,8 +9,11 @@
     <?php include_once('./inc/head.inc.php') ?>
 </head>
 <body>
+    <?php include_once('inc/header.inc.php') ?>
     <h1>
         Test headline 1
     </h1>
+
+    <?php include_once('inc/footer.inc.php') ?>
 </body>
 </html>
