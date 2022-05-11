@@ -1,5 +1,5 @@
 <?php 
-    
+    $filemanager = true;
 
 
 

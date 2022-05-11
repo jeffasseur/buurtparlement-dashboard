@@ -7,7 +7,7 @@
     --color-text: #1F2958;
     --color-text-secondary: #666C8B;
     --color-accent-orange: #FE7247;
-    --color-bg-light: rgba(73, 94, 249, 0.2);
+    --color-bg-light: rgba(73, 94, 249, 0.08);
 
     --color-white: #FFFFFF;
     --color-black: #000000;
@@ -41,7 +41,7 @@
     --lh-standard: 1.5em;
 
     --header-height: 3rem;
-    --nav-width: 68px;
+    --nav-width: 72px;
 }
 
 *,::before,::after{
@@ -103,9 +103,21 @@ a:hover {
 }
 
 .header_toggle{
-    color: var(--color-accent-orange);
+    color: var(--color-blue);
     font-size: 1.5rem;
     cursor: pointer;
+}
+
+.ms-100 {
+    margin-left: 100px;
+    transition: .5s;
+}
+
+.logo-icon {
+    background: url('../assets/icons/Groupsolid.svg') no-repeat center center;
+    background-size: cover;
+    width: 30px;
+    height: 30px;
 }
 
 .header_img{
@@ -171,7 +183,7 @@ a:hover {
 }
 
 .nav_link:hover{
-    color: var(--color-text);
+    color: var(--color-accent-orange);
 }
 
 .nav_icon{
@@ -180,6 +192,7 @@ a:hover {
 
 .shownav{
     left: 0;
+    width: 170px;
 }
 
 .body-pd{
@@ -197,6 +210,23 @@ a:hover {
     width: 2px;
     height: 32px;
     background-color: var(--color-white);
+}
+
+/* DASHBOARD */
+.dashboard-main-news {
+    margin-bottom: 1.5em;
+    border-radius: 1em;
+}
+
+.dashboard-main-forum {
+    margin-bottom: 1.5em;
+    border-radius: 1em;
+}
+
+.dashboard-main-agenda {
+    margin-bottom: 1.5em;
+    border-radius: 1em;
+
 }
 
 .height-100{
@@ -234,7 +264,117 @@ main>.files-grid>div>a>i.bx {
     font-size: 5rem;
 }
 
-@media screen and (min-width: 768px){
+/* ---------- CALENDAR ---------- */
+ 
+.calendar {
+    text-align: center;
+}
+   
+  .calendar header {
+    position: relative;
+}
+   
+  .calendar h2 {
+    text-transform: uppercase;
+  }
+   
+  .calendar thead {
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+   
+  .calendar tbody {
+    color: var(--color-text);
+  }
+   
+  .calendar tbody td:hover {
+    border: 2px solid var(--color-blue);
+  }
+   
+  .calendar td {
+    border: 2px solid transparent;
+    border-radius: 50%;
+    display: inline-block;
+    height: 3.5em;
+    line-height: 3.5em;
+    text-align: center;
+    width: 3.5em;
+  }
+   
+  .calendar .prev-month,
+  .calendar .next-month {
+    color: var(--color-text-secondary);
+  }
+   
+  .calendar .prev-month:hover,
+  .calendar .next-month:hover {
+    border: 2px solid var(--color-text-secondary);
+  }
+   
+  .current-day {
+    background: var(--color-blue);
+    color: var(--color-white);
+  }
+   
+  .event {
+    cursor: pointer;
+    position: relative;
+  }
+   
+  .event:after {
+    background: var(--color-blue);
+    border-radius: 50%;
+    bottom: 0.5em;
+    display: block;
+    content: "";
+    height: 0.5em;
+    left: 50%;
+    margin: 0 0 0 -0.25em;
+    position: absolute;
+    width: 0.5em;
+  }
+   
+  .event.current-day:after {
+    background: var(--color-white);
+  }
+   
+  .btn-prev,
+  .btn-next {
+    border: 2px solid var(--color-light);
+    border-radius: 50%;
+    color: var(--color-blue);
+    height: 2em;
+    font-size: 0.75em;
+    line-height: 2em;
+    margin: -1em;
+    position: absolute;
+    top: 50%;
+    width: 2em;
+  }
+   
+  .btn-prev:hover,
+  .btn-next:hover {
+    background: #cbd1d2;
+    color: #f9f9f9;
+  }
+   
+  .btn-prev {
+    left: 6em;
+  }
+   
+  .btn-next {
+    right: 6em;
+  }
+
+  .hide-mobile {
+    display: none;
+  }
+
+
+
+
+
+@media screen and (min-width: 1300px){
     body{
         margin: calc(var(--header-height) + 1rem) 0 0 0;
         padding-left: calc(var(--nav-width) + 2rem);
@@ -265,5 +405,31 @@ main>.files-grid>div>a>i.bx {
     
     .body-pd{
         padding-left: calc(var(--nav-width) + 188px);
+    }
+
+    .dashboard-main {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 1fr, 2fr;
+        grid-gap: 2rem;
+    }
+
+    .dashboard-main-news {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .dashboard-main-forum {
+        grid-column: 1/2;
+        grid-row: 2 / 3;
+    }
+
+    .dashboard-main-agenda {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+    }
+
+    .hide-mobile {
+        display: inline-block;
     }
 }

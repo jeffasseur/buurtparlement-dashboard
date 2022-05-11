@@ -8,17 +8,31 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Validate that all variables exist
         if(toggle && nav && bodypd && headerpd){
-            toggle.addEventListener('click', ()=>{
-                console.log("clicked")
+            if( screen.width > 1300){
                 // show navbar
                 nav.classList.toggle('shownav')
                 // change icon
-                toggle.classList.toggle('bx-x')
+                toggle.classList.toggle('d-none')
+                toggle.classList.toggle('ms-100')
                 // add padding to body
                 bodypd.classList.toggle('body-pd')
                 // add padding to header
                 headerpd.classList.toggle('body-pd')
-            })
+            }
+            else {
+                toggle.addEventListener('click', ()=>{
+                    console.log("clicked")
+                    // show navbar
+                    nav.classList.toggle('shownav')
+                    // change icon
+                    toggle.classList.toggle('bx-x')
+                    toggle.classList.toggle('ms-100')
+                    // add padding to body
+                    bodypd.classList.toggle('body-pd')
+                    // add padding to header
+                    headerpd.classList.toggle('body-pd')
+                })
+            }
         }
     }
     
