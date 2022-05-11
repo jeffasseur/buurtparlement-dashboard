@@ -1,4 +1,4 @@
-<header class="header bg-light" id="header">
+<header class="header" id="header">
         <div class="header_toggle"> 
             <i class='bx bx-menu fs-3 show-mobile' style='color: #495EF9' id="header-toggle"></i> 
         </div>

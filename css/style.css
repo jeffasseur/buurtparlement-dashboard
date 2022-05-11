@@ -7,7 +7,8 @@
     --color-text: #1F2958;
     --color-text-secondary: #666C8B;
     --color-accent-orange: #FE7247;
-    --color-bg-light: rgba(73, 94, 249, 0.08);
+    --color-bg-light: #F0F2FF;
+    --color-bg-light-rgba: rgba(73, 94, 249, 0.1);
 
     --color-white: #FFFFFF;
     --color-black: #000000;
@@ -56,6 +57,7 @@ body{
     font-size: var(--normal-font-size);
     transition: .5s;
     color: var(--color-text);
+    background: var(--color-bg-light);
 }
 
 h1 {
@@ -63,6 +65,21 @@ h1 {
     font-size: var(--fs-headline1);
     font-weight: var(--fw-extra-bold);
     line-height: var(--lh-standard);
+    color: var(--color-blue);
+}
+
+h2 {
+    font-family: var(--font-headline);
+    font-size: var(--fs-headline2);
+    font-weight: var(--fw-bold);
+    line-height: var(--lh-standard);
+    color: var(--color-text);
+}
+
+h3 {
+    font-family: var(--font-headline);
+    font-size: var(--fs-headline3);
+    font-weight: var(--fw-semi-bold);
     color: var(--color-blue);
 }
 
@@ -100,6 +117,7 @@ a:hover {
     padding: 0 1rem;
     z-index: 100;
     transition: .5s;
+    background: var(--color-bg-light);
 }
 
 .header_toggle{

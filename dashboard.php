@@ -11,7 +11,7 @@
 
     <?php include_once('inc/head.inc.php') ?>
 </head>
-<body id="body-pd" class="bg-light">
+<body id="body-pd">
     <?php include_once('inc/header.inc.php'); ?>
 
     <main class="container-fluid">
