@@ -1,6 +1,13 @@
 <?php 
  $dashboard = true;
 
+ include_once('bootstrap.php');
+
+ // Forum
+ $posts = Forum::getAll();
+
+ // User
+
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,14 +70,20 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php foreach($posts as $p): ?>
                         <tr>
                             <th scope="row">
                                 <img class="rounded-circle me-2 hide-mobile" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.PtAghFSwI4d40TBvu7DFDwHaHa%26pid%3DApi&f=1" alt="Picture Author" width="35" height="35">
                                 Jef
                             </th>
-                            <td>Lancering Buurtparlement Dashboard</td>
-                            <td>2022-05-25</td>
+                            <td>
+                                <a href="forum-post.php?id=<?php echo htmlspecialchars($p['id']); ?>">
+                                    <?php echo htmlspecialchars($p['title']); ?>
+                                </a>
+                            </td>
+                            <td><?php echo htmlspecialchars($p['time']); ?></td>
                         </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
