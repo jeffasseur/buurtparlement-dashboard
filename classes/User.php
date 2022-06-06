@@ -11,62 +11,44 @@ class User
     private $password;
     public $function;
     private $bio;
-        
-    public function setFunction($course)
+
+    public function setFirstname($firstName) 
     {
-        $this->course = $course;
-        return $this;
-    }
-
-    public function getFunction()
-    {
-        return $this->function;
-    }
-
-    public function setBio($bio) {
-        $this->bio = $bio;
-    }
-
-    public function getBio() {
-        return $this->bio;
-    }
-
-    // get value of username
-    public function getFirstName()
-    {
-        return $this->username;
-    }
-
-    // set value of username
-    public function setUsername($username)
-    {
-        // username cannot be empty
-        if (empty($username)) {
-            throw new Exception("Username cannot be empty.");
+        if(empty($firstName)) {
+            throw new Exception("Firstname is required");
         }
 
-        $this->username = $username;
-
+        $this->firstName = $firstName;
         return $this;
     }
 
-    // get value of email
-    public function getEmail()
+    public function getFirstName()
     {
-        return $this->email;
+        return $this->firstName;
     }
 
-    // set value of email
+    public function setLastName($lastName) 
+    {
+        if(empty($lastName)) {
+            throw new Exception("Lastname is required");
+        }
+        $this->lastName = $lastName;
+        return $this;
+    }
+
+    public function getLastName() 
+    {
+        return $this->lastName;
+    }
+
     public function setEmail($email)
     {
         // email cannot be empty
         if (empty($email)) {
             throw new Exception("Email cannot be empty.");
         }
-
-        // email has to end with '@student.thomasmore.be' or '@thomasmore.be'
-        if (!str_ends_with($email, "@student.thomasmore.be") && !str_ends_with($email, "@thomasmore.be")) {
-            throw new Exception("Email format is invalid.");
+        if ( $this->getByEmail($email) ) {
+            throw new Exception("Email already exists.");
         }
 
         $this->email = $email;
@@ -74,18 +56,19 @@ class User
         return $this;
     }
 
-    // get value of backup email
-    public function getBackupEmail()
+    public function getEmail()
     {
-        return $this->backupEmail;
+        return $this->email;
     }
 
-    // set value of backup email
     public function setBackupEmail($backupEmail)
     {
-        // backup email cannot be empty
+        // email cannot be empty
         if (empty($backupEmail)) {
             throw new Exception("Email cannot be empty.");
+        }
+        if ($this->getByEmail($backupEmail)) {
+            throw new Exception("Email already exists.");
         }
 
         $this->backupEmail = $backupEmail;
@@ -93,13 +76,11 @@ class User
         return $this;
     }
 
-    // get value of password
-    public function getPassword()
+    public function getBackupEmail()
     {
-        return $this->password;
+        return $this->backupEmail;
     }
 
-    // set value of password
     public function setPassword($password)
     {
         // password length should be 6 or longer
@@ -112,28 +93,61 @@ class User
             throw new Exception("Password cannot be empty.");
         }
 
-        $this->password = $password;
+        // hash the incoming value of password
+        $options = [
+            'cost' => 11,
+        ];
+
+        $password2 = password_hash($password, PASSWORD_DEFAULT, $options);
+
+        $this->password = $password2;
         return $this;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+        
+    public function setFunction($function)
+    {
+        $this->function = $function;
+        return $this;
+    }
+
+    public function getFunction()
+    {
+        return $this->function;
+    }
+
+    public function setBio($bio) 
+    {
+        $this->bio = $bio;
+        return $this;
+    }
+
+    public function getBio() 
+    {
+        return $this->bio;
     }
 
     // this function checks if a user can login with the password and user provided
     public function canLogin($email, $password)
     {
         $conn = DB::getConnection();
-        $statement = $conn->prepare("select * from users where email = :email OR backup_email = :email");
+        $statement = $conn->prepare("select * from users where email = :email");
         $statement->bindValue(":email", $email);
-
-        // $backupEmail = $this->getBackupEmail();
-        // $statement->bindValue(":backup_email", $backupEmail);
 
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
 
         if (!$user) {
             // er is een onbestaande gebruiker ingevuld
-            throw new Exception("We couldn't find an account matching the email and password you entered. Please check your email and password and try again.");
+            throw new Exception("Er is geen account gevonden met deze gegevens");
             return false;
-        } 
+        }
+
+        //var_dump($user);
 
         $hash = $user["password"];
 
@@ -149,7 +163,19 @@ class User
         return $this;
     }
 
-    public static function getUser($id) {
+    public function register()
+    {
+        $conn = DB::getConnection();
+        $statement = $conn->prepare("insert into users (firstname, lastname, email, password) values (:firstname, :lastname, :email, :password)");
+        $statement->bindValue(":firstname", $this->firstName);
+        $statement->bindValue(":lastname", $this->lastName);
+        $statement->bindValue(":email", $this->email);
+        $statement->bindValue(":password", $this->password);
+        return $statement->execute();
+    }
+
+    public static function getUser($id) 
+    {
         $conn = DB::getConnection();
         $statement = $conn->prepare("select * from users where id = :id");
         $statement->bindValue(":id", $id);
@@ -157,5 +183,28 @@ class User
         $user = $statement->fetch(PDO::FETCH_ASSOC);
 
         return $user;
+    }
+
+    public function getByEmail($email) 
+    {
+        $conn = DB::getConnection();
+        $statement = $conn->prepare("select * from users where email = :email");
+        $statement->bindValue(":email", $email);
+        $statement->execute();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $user;
+    }
+
+    public function update($id) 
+    {
+        $conn = DB::getConnection();
+        $statement = $conn->prepare("update users set firstname = :firstname, lastname = :lastname, backup_email = :backupEmail, bio = :bio where id = :id");
+        $statement->bindValue(":firstname", $this->firstName);
+        $statement->bindValue(":lastname", $this->lastName);
+        $statement->bindValue(":backupEmail", $this->backupEmail);
+        $statement->bindValue(":bio", $this->bio);
+        $statement->bindValue(":id", $id);
+        return $statement->execute();
     }
 }

@@ -1,10 +1,20 @@
 <?php 
+    include_once('bootstrap.php');
     $filemanager = true;
+    $title = "Documenten";
+
+    // get file with id from URL
+    $id = $_GET['id'];
+    $document = Document::getById($id);
 
 
+    session_start();
 
-
-
+    if(!isset($_SESSION['user'])) {
+        header("Location: login.php");
+    } else {
+        $user = User::getUser($_SESSION['user']['id']);
+    }
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -16,12 +26,25 @@
 
     <?php include_once('inc/head.inc.php'); ?>
 </head>
-<body id=body-pd">
-    <?php include_once('inc/header.inc.php'); ?>
+<body>
+    <?php include_once('inc/aside.inc.php'); ?>
+    
+    <div class="ownContainer">
+        <?php include_once('inc/header.inc.php'); ?>
 
-    <main>
-        Main
-    </main>
+        <main class="file-container">
+            <h2><?php echo $document['title']; ?></h2>
+
+            <iframe 
+                class="preview-doc rounded-3" 
+                src="<?php echo $document['path']; ?>" 
+                width="100%" 
+                height="100%" 
+                frameborder="0"
+                scrolling="auto">
+            </iframe>
+        </main>
+    </div>
 
     <?php include_once('inc/footer.inc.php'); ?>
 </body>

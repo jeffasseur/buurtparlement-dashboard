@@ -19,7 +19,13 @@
     <?php include_once('inc/head.inc.php') ?>
 </head>
 <body id="body-pd">
-    <?php include_once('inc/header.inc.php'); ?>
+    <header class="header" id="header">
+        <?php include_once('inc/header.inc.php'); ?>
+    </header>
+
+    <aside>
+        <?php include_once('inc/aside.inc.php'); ?>
+    </aside>
 
     <main class="container-fluid">
         <div class="dashboard-welcome p-4">
@@ -42,6 +48,30 @@
 
                     <a class="card d-inline-block bg-light" style="width: 24rem; height: 24rem; min-width:24rem;">
                         <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2Fb4%2F7f%2F68%2Fb47f681c398953400f8c60cc643bedd0.jpg&f=1&nofb=1" alt="foto" class="card-img-top" style="object-fit: cover; height: 14rem; max-height: 14rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Titel kaart</h5>
+                            <p class="card-text">Text van de kaart.</p>
+                        </div>
+                    </a>
+
+                    <a class="card d-inline-block bg-light" style="width: 24rem; height: 24rem; min-width:24rem;">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmichaelblogt.files.wordpress.com%2F2019%2F05%2Fimg_5689.jpg%3Fstrip%3Dinfo%26w%3D1800&f=1&nofb=1" alt="foto" class="card-img-top" style="object-fit: cover; height: 14rem; max-height: 14rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Titel kaart</h5>
+                            <p class="card-text">Text van de kaart.</p>
+                        </div>
+                    </a>
+
+                    <a class="card d-inline-block bg-light" style="width: 24rem; height: 24rem; min-width:24rem;">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmichaelblogt.files.wordpress.com%2F2019%2F05%2Fimg_5689.jpg%3Fstrip%3Dinfo%26w%3D1800&f=1&nofb=1" alt="foto" class="card-img-top" style="object-fit: cover; height: 14rem; max-height: 14rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Titel kaart</h5>
+                            <p class="card-text">Text van de kaart.</p>
+                        </div>
+                    </a>
+
+                    <a class="card d-inline-block bg-light" style="width: 24rem; height: 24rem; min-width:24rem;">
+                        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmichaelblogt.files.wordpress.com%2F2019%2F05%2Fimg_5689.jpg%3Fstrip%3Dinfo%26w%3D1800&f=1&nofb=1" alt="foto" class="card-img-top" style="object-fit: cover; height: 14rem; max-height: 14rem;">
                         <div class="card-body">
                             <h5 class="card-title">Titel kaart</h5>
                             <p class="card-text">Text van de kaart.</p>
